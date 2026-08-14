@@ -1,17 +1,29 @@
 {
   "categories": [
-    { "id": "brand",   "label": "形象官網", "labelEn": "Brand Site" },
-    { "id": "ecom",    "label": "電商",     "labelEn": "E-commerce" },
-    { "id": "landing", "label": "落地頁",   "labelEn": "Landing Page" }
+    {
+      "id": "brand",
+      "label": "形象官網",
+      "labelEn": "Brand Site"
+    },
+    {
+      "id": "ecom",
+      "label": "電商",
+      "labelEn": "E-commerce"
+    },
+    {
+      "id": "landing",
+      "label": "落地頁",
+      "labelEn": "Landing Page"
+    }
   ],
   "projects": [
     {
-      "id": "sample-01",
+      "id": "breaday",
       "category": "brand",
-      "title": "範例項目・示意標題",
-      "description": "這裡放置作品簡介：客戶類型、使用技術與設計重點。實際作品上線後替換此區塊。",
-      "image": "",
-      "url": ""
+      "title": "BREADAY 台灣官網",
+      "description": "日本熊本麵包品牌的台灣官網。品牌延伸、UI、前後端與購物金流一人包辦，一個月內上線。",
+      "image": "images/projects/breaday.png",
+      "url": "https://floraestudio.github.io/breaday/index.html"
     }
   ]
 }

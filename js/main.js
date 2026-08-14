@@ -123,14 +123,29 @@
   function attachChipFilter(chipsEl, gridEl) {
     var chips = chipsEl.querySelectorAll(".chip");
     var cards = gridEl.querySelectorAll(".project");
+    var FADE_MS = 260;
+
     chips.forEach(function (chip) {
       chip.addEventListener("click", function () {
+        if (chip.classList.contains("active")) return;
         chips.forEach(function (c) { c.classList.remove("active"); });
         chip.classList.add("active");
         var f = chip.getAttribute("data-filter");
+
         cards.forEach(function (card) {
           var show = f === "all" || card.getAttribute("data-cat") === f;
-          card.classList.toggle("hidden", !show);
+          if (show) {
+            card.classList.remove("hidden");
+            card.classList.add("in-view"); // 直接標記已顯示，不受限於是否曾被捲動觀察到
+            requestAnimationFrame(function () {
+              card.classList.remove("filter-hide");
+            });
+          } else if (!card.classList.contains("hidden")) {
+            card.classList.add("filter-hide");
+            window.setTimeout(function () {
+              card.classList.add("hidden");
+            }, FADE_MS);
+          }
         });
       });
     });
