@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作品案例 — FloraeStudio</title>
+<meta name="description" content="FloraeStudio 網站設計作品案例詳情。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;600;700&family=Noto+Sans+TC:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="project">
+
+<header>
+  <div class="nav-inner">
+    <div class="wordmark">
+      <span class="name">FloraeStudio</span>
+      <span class="sub">florae studio</span>
+    </div>
+    <nav aria-label="主選單">
+      <ul>
+        <li><a href="index.html#home"><span class="pin"></span>主頁</a></li>
+        <li><a href="index.html#portfolio" class="active"><span class="pin"></span>作品集</a></li>
+        <li><a href="index.html#commission"><span class="pin"></span>委託</a></li>
+        <li><a href="index.html#misc"><span class="pin"></span>雜談</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- 找不到對應作品時顯示（沒有 ?id= 或 id 不存在於 projects.json） -->
+<div class="detail-notfound" id="notFound" hidden>
+  <span class="eyebrow">Specimen Not Found</span>
+  <h1>找不到這件標本</h1>
+  <p>可能連結有誤，或這件作品已經被移除、重新分類了。</p>
+  <p><a class="detail-back" href="index.html#portfolio">← 回到作品集</a></p>
+</div>
+
+<!-- 正常內容：由 js/main.js 依 projects.json 動態填入 -->
+<article id="projectDetail" hidden>
+
+  <section class="detail-hero">
+    <div class="wrap">
+      <a class="detail-back" href="index.html#portfolio">← 回到作品集</a>
+      <div class="plate-no" id="detailPlateNo">PLATE · SPECIMEN DETAIL</div>
+      <h1 id="detailTitle">作品標題</h1>
+      <span class="cat-label" id="detailCategory">分類</span>
+
+      <dl class="detail-meta" id="detailMeta">
+        <!-- JS 動態產生 dt/dd 配對 -->
+      </dl>
+    </div>
+  </section>
+
+  <div class="detail-frame">
+    <div class="plate">
+      <div class="shot" id="detailShot">
+        <!-- JS 填入實際截圖或佔位圖示 -->
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-body" id="detailBody">
+    <!-- JS 依 content 欄位產生段落 -->
+  </div>
+
+  <div class="detail-cta" id="detailCta" hidden>
+    <a id="detailCtaLink" href="#" target="_blank" rel="noopener">前往網站 →</a>
+  </div>
+
+  <div class="detail-gallery" id="detailGallery" hidden>
+    <!-- JS 依 gallery 欄位產生額外截圖 -->
+  </div>
+
+</article>
+
+<div class="divider"><hr></div>
+
+<footer>
+  <div class="foot-inner">
+    <span class="brand">FloraeStudio</span>
+    <div class="links">
+      <a href="#">GitHub</a>
+      <a href="#">Twitter / X</a>
+      <a href="index.html#commission">委託聯絡</a>
+    </div>
+    <div class="fine">© 2026 FloraeStudio · Herbarium Vol. I · Built with care, one specimen at a time.</div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
