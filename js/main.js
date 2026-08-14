@@ -10,6 +10,8 @@
 (function () {
   "use strict";
 
+  var lenisInstance = null;
+
   var PLACEHOLDER_ICON =
     '<svg viewBox="0 0 100 100" fill="none">' +
     '<rect x="20" y="18" width="60" height="44" rx="1" stroke="#2b3627" stroke-width="1.2"/>' +
@@ -115,6 +117,7 @@
 
     attachChipFilter(chipsEl, gridEl);
     attachScrollReveal(gridEl.querySelectorAll(".reveal"));
+    if (lenisInstance) lenisInstance.resize(); // 新增：卡片插入後重新量測捲動高度
   }
 
   function attachChipFilter(chipsEl, gridEl) {
@@ -141,6 +144,11 @@
         return res.json();
       })
       .then(renderPortfolio)
+      .then(function () {
+        window.addEventListener("load", function () {
+          if (lenisInstance) lenisInstance.resize();
+        });
+      })
       .catch(function (err) {
         console.error(err);
         if (gridEl) {
@@ -212,6 +220,7 @@
       duration: 1.1,
       easing: (t) => 1 - Math.pow(1 - t, 3),
     });
+    lenisInstance = lenis;
 
     function raf(time) {
       lenis.raf(time);
@@ -219,55 +228,6 @@
     }
     requestAnimationFrame(raf);
   }
-  // function initSmoothScroll() {
-  //   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  //   var isTouch = window.matchMedia("(pointer: coarse)").matches;
-  //   if (prefersReduced || isTouch) return;
-
-  //   var current = window.scrollY;
-  //   var target = window.scrollY;
-  //   var ease = 0.085; // 越小越「黏稠」，越大越接近原生捲動
-  //   var ticking = false;
-  //   var maxScroll = function () {
-  //     return document.documentElement.scrollHeight - window.innerHeight;
-  //   };
-
-  //   function onWheel(e) {
-  //     // Ctrl/Cmd + wheel 通常是縮放手勢，交還給瀏覽器原生行為
-  //     if (e.ctrlKey || e.metaKey) return;
-  //     e.preventDefault();
-  //     target += e.deltaY;
-  //     target = Math.max(0, Math.min(target, maxScroll()));
-  //     if (!ticking) {
-  //       ticking = true;
-  //       requestAnimationFrame(render);
-  //     }
-  //   }
-
-  //   function render() {
-  //     current += (target - current) * ease;
-  //     if (Math.abs(target - current) < 0.5) {
-  //       current = target;
-  //       ticking = false;
-  //     } else {
-  //       requestAnimationFrame(render);
-  //     }
-  //     window.scrollTo(0, current);
-  //   }
-
-  //   // 使用者直接拖曳捲軸或按鍵盤（PageDown/End 等）時，同步內部座標，
-  //   // 避免下一次滾輪事件把畫面「拉回」到過時的 target。
-  //   function syncFromNative() {
-  //     if (!ticking) {
-  //       current = window.scrollY;
-  //       target = window.scrollY;
-  //     }
-  //   }
-
-  //   window.addEventListener("wheel", onWheel, { passive: false });
-  //   window.addEventListener("scroll", syncFromNative, { passive: true });
-  //   window.addEventListener("resize", syncFromNative);
-  // }
 
   // ---------- 初始化 ----------
   document.addEventListener("DOMContentLoaded", function () {
