@@ -205,54 +205,69 @@
   // 只在「非觸控裝置」且「使用者未設定減少動態」時啟用，
   // 手機/平板本身滾動已經很順，不需要（也不該）疊加額外的慣性層。
   function initSmoothScroll() {
-    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var isTouch = window.matchMedia("(pointer: coarse)").matches;
-    if (prefersReduced || isTouch) return;
+    if (typeof Lenis === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    var current = window.scrollY;
-    var target = window.scrollY;
-    var ease = 0.085; // 越小越「黏稠」，越大越接近原生捲動
-    var ticking = false;
-    var maxScroll = function () {
-      return document.documentElement.scrollHeight - window.innerHeight;
-    };
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+    });
 
-    function onWheel(e) {
-      // Ctrl/Cmd + wheel 通常是縮放手勢，交還給瀏覽器原生行為
-      if (e.ctrlKey || e.metaKey) return;
-      e.preventDefault();
-      target += e.deltaY;
-      target = Math.max(0, Math.min(target, maxScroll()));
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(render);
-      }
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
     }
-
-    function render() {
-      current += (target - current) * ease;
-      if (Math.abs(target - current) < 0.5) {
-        current = target;
-        ticking = false;
-      } else {
-        requestAnimationFrame(render);
-      }
-      window.scrollTo(0, current);
-    }
-
-    // 使用者直接拖曳捲軸或按鍵盤（PageDown/End 等）時，同步內部座標，
-    // 避免下一次滾輪事件把畫面「拉回」到過時的 target。
-    function syncFromNative() {
-      if (!ticking) {
-        current = window.scrollY;
-        target = window.scrollY;
-      }
-    }
-
-    window.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("scroll", syncFromNative, { passive: true });
-    window.addEventListener("resize", syncFromNative);
+    requestAnimationFrame(raf);
   }
+  // function initSmoothScroll() {
+  //   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  //   var isTouch = window.matchMedia("(pointer: coarse)").matches;
+  //   if (prefersReduced || isTouch) return;
+
+  //   var current = window.scrollY;
+  //   var target = window.scrollY;
+  //   var ease = 0.085; // 越小越「黏稠」，越大越接近原生捲動
+  //   var ticking = false;
+  //   var maxScroll = function () {
+  //     return document.documentElement.scrollHeight - window.innerHeight;
+  //   };
+
+  //   function onWheel(e) {
+  //     // Ctrl/Cmd + wheel 通常是縮放手勢，交還給瀏覽器原生行為
+  //     if (e.ctrlKey || e.metaKey) return;
+  //     e.preventDefault();
+  //     target += e.deltaY;
+  //     target = Math.max(0, Math.min(target, maxScroll()));
+  //     if (!ticking) {
+  //       ticking = true;
+  //       requestAnimationFrame(render);
+  //     }
+  //   }
+
+  //   function render() {
+  //     current += (target - current) * ease;
+  //     if (Math.abs(target - current) < 0.5) {
+  //       current = target;
+  //       ticking = false;
+  //     } else {
+  //       requestAnimationFrame(render);
+  //     }
+  //     window.scrollTo(0, current);
+  //   }
+
+  //   // 使用者直接拖曳捲軸或按鍵盤（PageDown/End 等）時，同步內部座標，
+  //   // 避免下一次滾輪事件把畫面「拉回」到過時的 target。
+  //   function syncFromNative() {
+  //     if (!ticking) {
+  //       current = window.scrollY;
+  //       target = window.scrollY;
+  //     }
+  //   }
+
+  //   window.addEventListener("wheel", onWheel, { passive: false });
+  //   window.addEventListener("scroll", syncFromNative, { passive: true });
+  //   window.addEventListener("resize", syncFromNative);
+  // }
 
   // ---------- 初始化 ----------
   document.addEventListener("DOMContentLoaded", function () {
