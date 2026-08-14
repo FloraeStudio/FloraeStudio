@@ -39,7 +39,7 @@
     var shotInner = project.image
       ? '<img src="' + escapeHtml(project.image) + '" alt="' + escapeHtml(project.title) + '">'
       : PLACEHOLDER_ICON +
-        '<span class="placeholder-label">screenshot placeholder</span>';
+      '<span class="placeholder-label">screenshot placeholder</span>';
 
     article.innerHTML =
       '<div class="shot">' +

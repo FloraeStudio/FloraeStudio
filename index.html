@@ -1,218 +1,247 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FloraeStudio — 標本誌｜網站設計作品集</title>
-<meta name="description" content="FloraeStudio 網站設計與前端委託作品集，以標本誌意象呈現作品、委託資訊與雜談。">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FloraeStudio — 標本誌｜網站設計作品集</title>
+  <meta name="description" content="FloraeStudio 網站設計與前端委託作品集，以標本誌意象呈現作品、委託資訊與雜談。">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;600;700&family=Noto+Sans+TC:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;600;700&family=Noto+Sans+TC:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<header>
-  <div class="nav-inner">
-    <div class="wordmark">
-      <span class="name">FloraeStudio</span>
-      <span class="sub">florae studio</span>
+  <header>
+    <div class="nav-inner">
+      <div class="wordmark">
+        <span class="name">FloraeStudio</span>
+        <span class="sub">florae studio</span>
+      </div>
+      <nav aria-label="主選單">
+        <ul>
+          <li><a href="#home" class="active"><span class="pin"></span>主頁</a></li>
+          <li><a href="#portfolio"><span class="pin"></span>作品集</a></li>
+          <li><a href="#commission"><span class="pin"></span>委託</a></li>
+          <li><a href="#misc"><span class="pin"></span>雜談</a></li>
+        </ul>
+      </nav>
     </div>
-    <nav aria-label="主選單">
-      <ul>
-        <li><a href="#home" class="active"><span class="pin"></span>主頁</a></li>
-        <li><a href="#portfolio"><span class="pin"></span>作品集</a></li>
-        <li><a href="#commission"><span class="pin"></span>委託</a></li>
-        <li><a href="#misc"><span class="pin"></span>雜談</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  </header>
 
-<section class="hero" id="home">
-  <div class="wrap">
-    <div class="plate-no">PLATE&nbsp;&nbsp;NO.&nbsp;000&nbsp;&nbsp;·&nbsp;&nbsp;FRONTISPIECE</div>
+  <section class="hero" id="home">
+    <div class="wrap">
+      <div class="plate-no">PLATE&nbsp;&nbsp;NO.&nbsp;000&nbsp;&nbsp;·&nbsp;&nbsp;FRONTISPIECE</div>
 
-    <svg class="emblem" viewBox="0 0 560 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <!-- branch -->
-      <path d="M40 190 C 140 150, 220 170, 280 120 C 340 70, 420 90, 520 40" stroke="#2b3627" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-      <!-- leaves along branch -->
-      <g class="sway sway-a"><path d="M120 165 C 100 150, 100 130, 118 122 C 130 140, 128 156, 120 165 Z" stroke="#7f9271" stroke-width="1.2" fill="none"/></g>
-      <g class="sway sway-b"><path d="M230 143 C 240 122, 260 116, 274 126 C 262 142, 244 148, 230 143 Z" stroke="#7f9271" stroke-width="1.2" fill="none"/></g>
-      <g class="sway sway-c"><path d="M370 78 C 372 56, 390 44, 408 48 C 402 66, 386 78, 370 78 Z" stroke="#7f9271" stroke-width="1.2" fill="none"/></g>
-      <!-- blooms -->
-      <g transform="translate(300,105)">
-        <g class="sway sway-b">
-          <g stroke="#a3667a" stroke-width="1.2" fill="none">
-            <ellipse cx="0" cy="-14" rx="7" ry="13"/>
-            <ellipse cx="0" cy="-14" rx="7" ry="13" transform="rotate(72 0 -14)"/>
-            <ellipse cx="0" cy="-14" rx="7" ry="13" transform="rotate(144 0 -14)"/>
-            <ellipse cx="0" cy="-14" rx="7" ry="13" transform="rotate(216 0 -14)"/>
-            <ellipse cx="0" cy="-14" rx="7" ry="13" transform="rotate(288 0 -14)"/>
-          </g>
-          <circle class="pulse" cx="0" cy="-14" r="3.4" fill="#ab8a52"/>
-        </g>
-      </g>
-      <g transform="translate(465,32)">
-        <g class="sway sway-c">
-          <g stroke="#a3667a" stroke-width="1.1" fill="none">
-            <ellipse cx="0" cy="-10" rx="5" ry="9.5"/>
-            <ellipse cx="0" cy="-10" rx="5" ry="9.5" transform="rotate(72 0 -10)"/>
-            <ellipse cx="0" cy="-10" rx="5" ry="9.5" transform="rotate(144 0 -10)"/>
-            <ellipse cx="0" cy="-10" rx="5" ry="9.5" transform="rotate(216 0 -10)"/>
-            <ellipse cx="0" cy="-10" rx="5" ry="9.5" transform="rotate(288 0 -10)"/>
-          </g>
-          <circle class="pulse" cx="0" cy="-10" r="2.6" fill="#ab8a52"/>
-        </g>
-      </g>
-      <!-- seed pod -->
-      <g transform="translate(70,178)">
+      <svg class="emblem" viewBox="0 0 560 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- branch -->
+        <path d="M40 190 C 140 150, 220 170, 280 120 C 340 70, 420 90, 520 40" stroke="#2b3627" stroke-width="1.4"
+          fill="none" stroke-linecap="round" />
+        <!-- leaves along branch -->
         <g class="sway sway-a">
-          <ellipse cx="0" cy="0" rx="10" ry="13" stroke="#2b3627" stroke-width="1.2" fill="none"/>
-          <path d="M-10 -2 C -4 -6, 4 -6, 10 -2" stroke="#2b3627" stroke-width="1"/>
+          <path d="M120 165 C 100 150, 100 130, 118 122 C 130 140, 128 156, 120 165 Z" stroke="#7f9271"
+            stroke-width="1.2" fill="none" />
         </g>
-      </g>
-    </svg>
-
-    <h1>FloraeStudio</h1>
-    <p class="tagline">Ex Herbario · 一頁一葉，皆為網站而生</p>
-    <p class="desc">網站設計與前端委託作品集。像整理一本標本誌，把每一次上線的網站好好壓平、貼上標籤、分類收藏。</p>
-    <a class="cta" href="#portfolio">查看作品集 →</a>
-  </div>
-</section>
-
-<div class="divider"><hr></div>
-
-<section class="catalog" id="catalog">
-  <div class="wrap">
-    <div class="catalog-head">
-      <span class="eyebrow">Specimen Catalog</span>
-      <h2>標本目錄</h2>
-    </div>
-
-    <div class="grid">
-
-      <!-- HOME -->
-      <article class="specimen home">
-        <div class="icon" aria-hidden="true">
-          <svg viewBox="0 0 100 100" fill="none">
-            <path d="M50 85 C 50 55, 50 45, 50 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-            <g stroke="#a3667a" stroke-width="1.3" fill="none">
-              <ellipse cx="50" cy="18" rx="9" ry="16"/>
-              <ellipse cx="50" cy="18" rx="9" ry="16" transform="rotate(72 50 18)"/>
-              <ellipse cx="50" cy="18" rx="9" ry="16" transform="rotate(144 50 18)"/>
-              <ellipse cx="50" cy="18" rx="9" ry="16" transform="rotate(216 50 18)"/>
-              <ellipse cx="50" cy="18" rx="9" ry="16" transform="rotate(288 50 18)"/>
+        <g class="sway sway-b">
+          <path d="M230 143 C 240 122, 260 116, 274 126 C 262 142, 244 148, 230 143 Z" stroke="#7f9271"
+            stroke-width="1.2" fill="none" />
+        </g>
+        <g class="sway sway-c">
+          <path d="M370 78 C 372 56, 390 44, 408 48 C 402 66, 386 78, 370 78 Z" stroke="#7f9271" stroke-width="1.2"
+            fill="none" />
+        </g>
+        <!-- blooms -->
+        <g transform="translate(300,105)">
+          <g class="sway sway-b">
+            <g stroke="#a3667a" stroke-width="1.2" fill="none">
+              <ellipse cx="0" cy="-14" rx="7" ry="13" />
+              <ellipse cx="0" cy="-14" rx="7" ry="13" transform="rotate(72 0 -14)" />
+              <ellipse cx="0" cy="-14" rx="7" ry="13" transform="rotate(144 0 -14)" />
+              <ellipse cx="0" cy="-14" rx="7" ry="13" transform="rotate(216 0 -14)" />
+              <ellipse cx="0" cy="-14" rx="7" ry="13" transform="rotate(288 0 -14)" />
             </g>
-            <circle cx="50" cy="18" r="4.5" fill="#ab8a52"/>
-            <path d="M50 60 C 38 54, 32 40, 38 30" stroke="#7f9271" stroke-width="1.3" fill="none"/>
-            <path d="M50 70 C 62 64, 68 50, 62 40" stroke="#7f9271" stroke-width="1.3" fill="none"/>
-          </svg>
-        </div>
-        <div>
-          <span class="en">Frontispiece · Home</span>
-          <h3>主頁</h3>
-          <p>工作室總覽——最新委託開放狀態、近期企劃與更新一次看。首次造訪從這裡開始。</p>
-          <div class="tag">
-            <span class="no">No. 001 · HERB–HOME</span>
-            <a class="go" href="#home">前往主頁 →</a>
+            <circle class="pulse" cx="0" cy="-14" r="3.4" fill="#ab8a52" />
+          </g>
+        </g>
+        <g transform="translate(465,32)">
+          <g class="sway sway-c">
+            <g stroke="#a3667a" stroke-width="1.1" fill="none">
+              <ellipse cx="0" cy="-10" rx="5" ry="9.5" />
+              <ellipse cx="0" cy="-10" rx="5" ry="9.5" transform="rotate(72 0 -10)" />
+              <ellipse cx="0" cy="-10" rx="5" ry="9.5" transform="rotate(144 0 -10)" />
+              <ellipse cx="0" cy="-10" rx="5" ry="9.5" transform="rotate(216 0 -10)" />
+              <ellipse cx="0" cy="-10" rx="5" ry="9.5" transform="rotate(288 0 -10)" />
+            </g>
+            <circle class="pulse" cx="0" cy="-10" r="2.6" fill="#ab8a52" />
+          </g>
+        </g>
+        <!-- seed pod -->
+        <g transform="translate(70,178)">
+          <g class="sway sway-a">
+            <ellipse cx="0" cy="0" rx="10" ry="13" stroke="#2b3627" stroke-width="1.2" fill="none" />
+            <path d="M-10 -2 C -4 -6, 4 -6, 10 -2" stroke="#2b3627" stroke-width="1" />
+          </g>
+        </g>
+      </svg>
+
+      <h1>FloraeStudio</h1>
+      <p class="tagline">Ex Herbario · 一頁一葉，皆為網站而生</p>
+      <p class="desc">網站設計與前端委託作品集。像整理一本標本誌，把每一次上線的網站好好壓平、貼上標籤、分類收藏。</p>
+      <a class="cta" href="#portfolio">查看作品集 →</a>
+    </div>
+  </section>
+
+  <div class="divider">
+    <hr>
+  </div>
+
+  <section class="catalog" id="catalog">
+    <div class="wrap">
+      <div class="catalog-head">
+        <span class="eyebrow">Specimen Catalog</span>
+        <h2>標本目錄</h2>
+      </div>
+
+      <div class="grid">
+
+        <!-- HOME -->
+        <article class="specimen home">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 100 100" fill="none">
+              <path d="M50 85 C 50 55, 50 45, 50 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+              <g stroke="#a3667a" stroke-width="1.3" fill="none">
+                <ellipse cx="50" cy="18" rx="9" ry="16" />
+                <ellipse cx="50" cy="18" rx="9" ry="16" transform="rotate(72 50 18)" />
+                <ellipse cx="50" cy="18" rx="9" ry="16" transform="rotate(144 50 18)" />
+                <ellipse cx="50" cy="18" rx="9" ry="16" transform="rotate(216 50 18)" />
+                <ellipse cx="50" cy="18" rx="9" ry="16" transform="rotate(288 50 18)" />
+              </g>
+              <circle cx="50" cy="18" r="4.5" fill="#ab8a52" />
+              <path d="M50 60 C 38 54, 32 40, 38 30" stroke="#7f9271" stroke-width="1.3" fill="none" />
+              <path d="M50 70 C 62 64, 68 50, 62 40" stroke="#7f9271" stroke-width="1.3" fill="none" />
+            </svg>
           </div>
-        </div>
-      </article>
+          <div>
+            <span class="en">Frontispiece · Home</span>
+            <h3>主頁</h3>
+            <p>工作室總覽——最新委託開放狀態、近期企劃與更新一次看。首次造訪從這裡開始。</p>
+            <div class="tag">
+              <span class="no">No. 001 · HERB–HOME</span>
+              <a class="go" href="#home">前往主頁 →</a>
+            </div>
+          </div>
+        </article>
 
-      <!-- PORTFOLIO -->
-      <article class="specimen" id="portfolio-card">
-        <div class="icon" aria-hidden="true">
-          <svg viewBox="0 0 100 100" fill="none">
-            <ellipse cx="40" cy="40" rx="16" ry="24" stroke="currentColor" stroke-width="1.3" fill="none" transform="rotate(-14 40 40)"/>
-            <path d="M40 22 C 40 30, 40 50, 40 58" stroke="#7f9271" stroke-width="1" transform="rotate(-14 40 40)"/>
-            <ellipse cx="58" cy="52" rx="14" ry="21" stroke="currentColor" stroke-width="1.3" fill="none" transform="rotate(10 58 52)"/>
-            <path d="M58 35 C 58 42, 58 60, 58 69" stroke="#a3667a" stroke-width="1" transform="rotate(10 58 52)"/>
-            <ellipse cx="48" cy="66" rx="12" ry="18" stroke="currentColor" stroke-width="1.1" fill="none" transform="rotate(-4 48 66)" opacity="0.6"/>
-          </svg>
-        </div>
-        <span class="en">Pressed Folio · Portfolio</span>
-        <h3>作品集</h3>
-        <p>網站設計實績，依形象官網、電商、落地頁分類收藏——如同押花冊，一頁一件，逐步積累中。</p>
-        <div class="tag">
-          <span class="no">No. 002 · HERB–WORK</span>
-          <a class="go" href="#portfolio">查看作品集 →</a>
-        </div>
-      </article>
+        <!-- PORTFOLIO -->
+        <article class="specimen" id="portfolio-card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 100 100" fill="none">
+              <ellipse cx="40" cy="40" rx="16" ry="24" stroke="currentColor" stroke-width="1.3" fill="none"
+                transform="rotate(-14 40 40)" />
+              <path d="M40 22 C 40 30, 40 50, 40 58" stroke="#7f9271" stroke-width="1" transform="rotate(-14 40 40)" />
+              <ellipse cx="58" cy="52" rx="14" ry="21" stroke="currentColor" stroke-width="1.3" fill="none"
+                transform="rotate(10 58 52)" />
+              <path d="M58 35 C 58 42, 58 60, 58 69" stroke="#a3667a" stroke-width="1" transform="rotate(10 58 52)" />
+              <ellipse cx="48" cy="66" rx="12" ry="18" stroke="currentColor" stroke-width="1.1" fill="none"
+                transform="rotate(-4 48 66)" opacity="0.6" />
+            </svg>
+          </div>
+          <span class="en">Pressed Folio · Portfolio</span>
+          <h3>作品集</h3>
+          <p>網站設計實績，依形象官網、電商、落地頁分類收藏——如同押花冊，一頁一件，逐步積累中。</p>
+          <div class="tag">
+            <span class="no">No. 002 · HERB–WORK</span>
+            <a class="go" href="#portfolio">查看作品集 →</a>
+          </div>
+        </article>
 
-      <!-- COMMISSION -->
-      <article class="specimen" id="commission">
-        <div class="icon" aria-hidden="true">
-          <svg viewBox="0 0 100 100" fill="none">
-            <path d="M50 20 C 30 30, 26 48, 40 58 C 54 68, 50 82, 50 82" stroke="#7f9271" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            <path d="M42 34 C 36 32, 32 26, 36 20" stroke="#7f9271" stroke-width="1.1" fill="none"/>
-            <rect x="38" y="66" width="26" height="18" rx="1" stroke="currentColor" stroke-width="1.3" fill="none" transform="rotate(-8 51 75)"/>
-            <circle cx="45" cy="70" r="1.6" fill="#ab8a52" transform="rotate(-8 51 75)"/>
-            <path d="M50 58 C 47 62, 45 66, 45 70" stroke="currentColor" stroke-width="1" fill="none"/>
-          </svg>
-        </div>
-        <span class="en">Tagged Cutting · Commission</span>
-        <h3>委託</h3>
-        <p>接案須知、價目表與過往委託實績，如同苗圃裡繫上名牌的植株——每一件都有主人。</p>
-        <div class="tag">
-          <span class="no">No. 003 · HERB–COMM</span>
-          <a class="go" href="#commission">查看委託須知 →</a>
-        </div>
-      </article>
+        <!-- COMMISSION -->
+        <article class="specimen" id="commission">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 100 100" fill="none">
+              <path d="M50 20 C 30 30, 26 48, 40 58 C 54 68, 50 82, 50 82" stroke="#7f9271" stroke-width="1.5"
+                fill="none" stroke-linecap="round" />
+              <path d="M42 34 C 36 32, 32 26, 36 20" stroke="#7f9271" stroke-width="1.1" fill="none" />
+              <rect x="38" y="66" width="26" height="18" rx="1" stroke="currentColor" stroke-width="1.3" fill="none"
+                transform="rotate(-8 51 75)" />
+              <circle cx="45" cy="70" r="1.6" fill="#ab8a52" transform="rotate(-8 51 75)" />
+              <path d="M50 58 C 47 62, 45 66, 45 70" stroke="currentColor" stroke-width="1" fill="none" />
+            </svg>
+          </div>
+          <span class="en">Tagged Cutting · Commission</span>
+          <h3>委託</h3>
+          <p>接案須知、價目表與過往委託實績，如同苗圃裡繫上名牌的植株——每一件都有主人。</p>
+          <div class="tag">
+            <span class="no">No. 003 · HERB–COMM</span>
+            <a class="go" href="#commission">查看委託須知 →</a>
+          </div>
+        </article>
 
-      <!-- MISC -->
-      <article class="specimen" id="misc">
-        <div class="icon" aria-hidden="true">
-          <svg viewBox="0 0 100 100" fill="none">
-            <ellipse cx="34" cy="34" rx="9" ry="14" stroke="#a3667a" stroke-width="1.2" fill="none" transform="rotate(-25 34 34)"/>
-            <ellipse cx="64" cy="46" rx="7" ry="11" stroke="#a3667a" stroke-width="1.2" fill="none" transform="rotate(18 64 46)"/>
-            <ellipse cx="46" cy="70" rx="6" ry="10" stroke="#7f9271" stroke-width="1.2" fill="none" transform="rotate(50 46 70)"/>
-            <ellipse cx="72" cy="74" rx="5" ry="8" stroke="#7f9271" stroke-width="1.1" fill="none" transform="rotate(-10 72 74)"/>
-          </svg>
-        </div>
-        <span class="en">Scattered Petals · Miscellany</span>
-        <h3>雜談</h3>
-        <p>沒有分類的日常碎片、隨手畫的塗鴉與閒聊——風一吹散落各處的花瓣。</p>
-        <div class="tag">
-          <span class="no">No. 004 · HERB–MISC</span>
-          <a class="go" href="#misc">查看雜談 →</a>
-        </div>
-      </article>
+        <!-- MISC -->
+        <article class="specimen" id="misc">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 100 100" fill="none">
+              <ellipse cx="34" cy="34" rx="9" ry="14" stroke="#a3667a" stroke-width="1.2" fill="none"
+                transform="rotate(-25 34 34)" />
+              <ellipse cx="64" cy="46" rx="7" ry="11" stroke="#a3667a" stroke-width="1.2" fill="none"
+                transform="rotate(18 64 46)" />
+              <ellipse cx="46" cy="70" rx="6" ry="10" stroke="#7f9271" stroke-width="1.2" fill="none"
+                transform="rotate(50 46 70)" />
+              <ellipse cx="72" cy="74" rx="5" ry="8" stroke="#7f9271" stroke-width="1.1" fill="none"
+                transform="rotate(-10 72 74)" />
+            </svg>
+          </div>
+          <span class="en">Scattered Petals · Miscellany</span>
+          <h3>雜談</h3>
+          <p>沒有分類的日常碎片、隨手畫的塗鴉與閒聊——風一吹散落各處的花瓣。</p>
+          <div class="tag">
+            <span class="no">No. 004 · HERB–MISC</span>
+            <a class="go" href="#misc">查看雜談 →</a>
+          </div>
+        </article>
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="portfolio-section" id="portfolio">
-  <div class="wrap">
-    <div class="portfolio-head">
-      <span class="eyebrow">Pressed Folio</span>
-      <h2>作品集</h2>
-      <p class="sub">Recently Cultivated Works · 依類型分類收藏</p>
+  <section class="portfolio-section" id="portfolio">
+    <div class="wrap">
+      <div class="portfolio-head">
+        <span class="eyebrow">Pressed Folio</span>
+        <h2>作品集</h2>
+        <p class="sub">Recently Cultivated Works · 依類型分類收藏</p>
+      </div>
+
+      <!-- 以下兩個容器由 js/main.js 依 data/projects.json 動態產生內容 -->
+      <div class="filter-chips" id="filterChips" role="tablist" aria-label="作品分類篩選"></div>
+      <div class="project-grid" id="projectGrid"></div>
     </div>
+  </section>
 
-    <!-- 以下兩個容器由 js/main.js 依 data/projects.json 動態產生內容 -->
-    <div class="filter-chips" id="filterChips" role="tablist" aria-label="作品分類篩選"></div>
-    <div class="project-grid" id="projectGrid"></div>
+  <div class="divider">
+    <hr>
   </div>
-</section>
 
-<div class="divider"><hr></div>
-
-<footer>
-  <div class="foot-inner">
-    <span class="brand">FloraeStudio</span>
-    <div class="links">
-      <a href="#">GitHub</a>
-      <a href="#">Twitter / X</a>
-      <a href="#commission">委託聯絡</a>
+  <footer>
+    <div class="foot-inner">
+      <span class="brand">FloraeStudio</span>
+      <div class="links">
+        <a href="#">GitHub</a>
+        <a href="#">Twitter / X</a>
+        <a href="#commission">委託聯絡</a>
+      </div>
+      <div class="fine">© 2026 FloraeStudio · Herbarium Vol. I · Built with care, one specimen at a time.</div>
     </div>
-    <div class="fine">© 2026 FloraeStudio · Herbarium Vol. I · Built with care, one specimen at a time.</div>
-  </div>
-</footer>
+  </footer>
 
-<script src="js/main.js" defer></script>
+  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
+  <script src="js/main.js" defer></script>
 </body>
+
 </html>
