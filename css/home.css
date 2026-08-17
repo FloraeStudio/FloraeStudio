@@ -576,6 +576,220 @@
   font-size: 12px;
 }
 
+/* ---------- commission section（委託） ---------- */
+.commission-section {
+  padding: 20px 32px 80px;
+}
+
+.commission-head {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.commission-head .eyebrow {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.commission-head h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.commission-head .sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+/* status plate — 接案狀態公告 */
+.status-plate {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  background: var(--card);
+  border: 1px dashed var(--line);
+  padding: 26px 28px;
+  margin-bottom: 40px;
+}
+
+.status-plate .status-icon {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  color: var(--ink-soft);
+  opacity: 0.7;
+}
+
+.status-plate .status-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.status-plate .status-label {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--brass);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.status-plate h3 {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.status-plate p {
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 620px;
+}
+
+.status-plate.is-paused .status-label {
+  color: var(--ink-soft);
+}
+
+/* service scope + process */
+.commission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 28px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 900px) {
+  .commission-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.commission-block {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 28px 26px;
+  box-shadow: 0 10px 24px -16px var(--shadow);
+}
+
+.commission-block h3 {
+  font-size: 19px;
+  margin: 8px 0 18px;
+}
+
+.scope-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.scope-list li {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  display: flex;
+  gap: 12px;
+}
+
+.scope-list .no {
+  flex: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--brass);
+  padding-top: 2px;
+}
+
+.process-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: process;
+}
+
+.process-list li {
+  padding: 14px 0;
+  border-top: 1px dashed var(--line);
+}
+
+.process-list li:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.process-list .step {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.process-list p {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* pricing + contact */
+.commission-foot {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+@media (max-width: 900px) {
+  .commission-foot {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pricing-note,
+.commission-contact {
+  padding: 26px 4px 0;
+}
+
+.pricing-note h3,
+.commission-contact h3 {
+  font-size: 17px;
+  margin: 8px 0 12px;
+}
+
+.pricing-note p,
+.commission-contact p {
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  margin: 0 0 16px;
+}
+
+.commission-contact .cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.03em;
+  padding: 10px 18px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background .2s ease, color .2s ease;
+}
+
+.commission-contact .cta:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
 /* ---------- reduced motion（首頁專屬部分） ---------- */
 @media (prefers-reduced-motion: reduce) {
 
@@ -610,5 +824,16 @@
 
   .specimen.home .icon {
     margin: 0 auto;
+  }
+
+  .commission-section {
+    padding: 20px 20px 60px;
+  }
+
+  .status-plate {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 22px 20px;
   }
 }
