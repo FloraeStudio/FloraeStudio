@@ -1,0 +1,318 @@
+/* ============================================================
+   base.css — 全站共用樣式（變數、reset、標題、header/nav、footer）
+   index.html 與 project.html 都會載入這份
+   ============================================================ */
+
+:root {
+  --paper: #efece0;
+  --paper-deep: #e7e3d3;
+  --card: #f8f6ec;
+  --ink: #2b3627;
+  --ink-soft: #5b6553;
+  --rose: #a3667a;
+  --sage: #7f9271;
+  --brass: #ab8a52;
+  --line: #cec7a9;
+  --shadow: rgba(43, 54, 39, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section,
+.hero {
+  scroll-margin-top: 84px;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.35), transparent 55%),
+    var(--paper);
+  color: var(--ink);
+  font-family: 'Noto Sans TC', 'IBM Plex Mono', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* paper grain */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.16  0 0 0 0 0.20  0 0 0 0 0.14  0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Noto Serif TC', serif;
+  margin: 0;
+  color: var(--ink);
+}
+
+.latin {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- shared keyframes ---------- */
+/* 呼吸動畫：nav 的 pin、標本編號前的黃銅點、emblem 的花蕊都共用這組 */
+@keyframes breathe {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes breathe-active {
+
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+}
+
+/* ---------- header / nav ---------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(239, 236, 224, 0.86);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.wordmark {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.wordmark .name {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+}
+
+.wordmark .sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.03em;
+  padding: 7px 13px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: var(--ink-soft);
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+
+nav a .pin {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brass);
+  opacity: 0.55;
+  transition: opacity .2s ease;
+  animation: breathe 3.6s ease-in-out infinite;
+}
+
+nav li:nth-child(2) .pin {
+  animation-delay: .6s;
+}
+
+nav li:nth-child(3) .pin {
+  animation-delay: 1.2s;
+}
+
+nav li:nth-child(4) .pin {
+  animation-delay: 1.8s;
+}
+
+nav a:hover {
+  border-color: var(--line);
+  color: var(--ink);
+  background: var(--card);
+}
+
+nav a:hover .pin {
+  opacity: 1;
+}
+
+nav a.active {
+  border-color: var(--rose);
+  color: var(--rose);
+}
+
+nav a.active .pin {
+  background: var(--rose);
+  opacity: 1;
+  animation: breathe-active 2.6s ease-in-out infinite;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+/* ---------- section divider ---------- */
+.divider {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.divider hr {
+  border: none;
+  border-top: 1px dashed var(--line);
+  margin: 0;
+}
+
+/* ---------- footer ---------- */
+footer {
+  margin-top: 80px;
+  padding: 42px 32px 48px;
+  border-top: 1px solid var(--line);
+  background: var(--paper-deep);
+}
+
+.foot-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer .brand {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 600;
+}
+
+footer .links {
+  display: flex;
+  gap: 18px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+}
+
+footer .links a {
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+
+footer .links a:hover {
+  color: var(--rose);
+}
+
+footer .fine {
+  width: 100%;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: var(--ink-soft);
+  letter-spacing: 0.03em;
+}
+
+/* ---------- reduced motion (共用部分：nav pin) ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+  .pin {
+    animation: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- responsive nav（共用） ---------- */
+@media (max-width: 640px) {
+  .nav-inner {
+    padding: 14px 20px;
+  }
+
+  nav ul {
+    gap: 2px;
+    overflow-x: auto;
+    max-width: 60vw;
+  }
+
+  nav a {
+    padding: 6px 9px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}
