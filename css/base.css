@@ -221,6 +221,35 @@ nav a.active .pin {
 
 .menu-toggle {
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-toggle .bar {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+  transition: transform .25s ease, opacity .2s ease;
+}
+
+header.nav-open .menu-toggle .bar:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+header.nav-open .menu-toggle .bar:nth-child(2) {
+  opacity: 0;
+}
+
+header.nav-open .menu-toggle .bar:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
 }
 
 /* ---------- section divider ---------- */
@@ -293,6 +322,11 @@ footer .fine {
     animation: none !important;
   }
 
+  .menu-toggle .bar,
+  nav {
+    transition: none !important;
+  }
+
   html {
     scroll-behavior: auto;
   }
@@ -304,15 +338,38 @@ footer .fine {
     padding: 14px 20px;
   }
 
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 0;
+    overflow: hidden;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 14px 24px -18px var(--shadow);
+    transition: max-height .3s ease;
+  }
+
+  header.nav-open nav {
+    max-height: 260px;
+  }
+
   nav ul {
+    flex-direction: column;
     gap: 2px;
-    overflow-x: auto;
-    max-width: 60vw;
+    max-width: none;
+    overflow-x: visible;
+    padding: 6px 20px 16px;
   }
 
   nav a {
-    padding: 6px 9px;
-    font-size: 11px;
-    white-space: nowrap;
+    padding: 12px 6px;
+    font-size: 13px;
+    white-space: normal;
   }
 }

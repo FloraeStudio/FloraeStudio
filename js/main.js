@@ -244,10 +244,47 @@
     requestAnimationFrame(raf);
   }
 
+  // ---------- 手機版漢堡選單開闔 ----------
+  function initMobileNav() {
+    var toggle = document.getElementById("menuToggle");
+    var nav = document.getElementById("primaryNav");
+    var header = toggle ? toggle.closest("header") : null;
+    if (!toggle || !nav || !header) return;
+
+    function closeNav() {
+      header.classList.remove("nav-open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+
+    function openNav() {
+      header.classList.add("nav-open");
+      toggle.setAttribute("aria-expanded", "true");
+    }
+
+    toggle.addEventListener("click", function () {
+      if (header.classList.contains("nav-open")) {
+        closeNav();
+      } else {
+        openNav();
+      }
+    });
+
+    // 點選單內任一連結後自動收合（含頁內錨點捲動的情況）
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeNav);
+    });
+
+    // 視窗放大回桌機寬度時，確保選單狀態重置，避免殘留展開樣式
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 640) closeNav();
+    });
+  }
+
   // ---------- 初始化 ----------
   document.addEventListener("DOMContentLoaded", function () {
     attachScrollReveal(document.querySelectorAll(".specimen"));
     initNavActiveOnScroll();
+    initMobileNav();
     initSmoothScroll();
     loadPortfolio();
   });
