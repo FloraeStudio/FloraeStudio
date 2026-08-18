@@ -123,7 +123,14 @@
   function attachChipFilter(chipsEl, gridEl) {
     var chips = chipsEl.querySelectorAll(".chip");
     var cards = gridEl.querySelectorAll(".project");
-    var FADE_MS = 260;
+    var FADE_MS = 220;
+
+    // 篩選用的卡片改用統一、較快的淡出/淡入時間，
+    // 並清掉進場動畫留下的 stagger delay，避免切換時卡片各自延遲、忽快忽慢
+    cards.forEach(function (card) {
+      card.classList.add("filtering");
+      card.style.transitionDelay = "0ms";
+    });
 
     chips.forEach(function (chip) {
       chip.addEventListener("click", function () {
