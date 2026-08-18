@@ -652,7 +652,6 @@
   line-height: 1.85;
   color: var(--ink-soft);
   margin: 0;
-  max-width: 62ch;
 }
 
 .status-plate.is-paused .status-label {
