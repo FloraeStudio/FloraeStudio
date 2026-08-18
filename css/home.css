@@ -429,7 +429,7 @@
 }
 
 .project.hidden {
-  display: none;
+  display: none !important;
 }
 
 .project.filter-hide {
