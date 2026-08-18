@@ -405,7 +405,8 @@
 }
 
 .project {
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: inherit;
   background: var(--card);
