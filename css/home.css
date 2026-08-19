@@ -553,29 +553,26 @@
   margin: 0;
 }
 
-/* empty / awaiting-collection state */
+/* empty / awaiting-collection state — 沿用跟一般作品卡相同的
+   .shot + .body 結構，確保切換分類時卡片高度不會突然塌陷 */
 .project.empty {
   background: transparent;
   border: 1px dashed var(--line);
   box-shadow: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 36px 24px;
-  min-height: 100%;
 }
 
-.project.empty .seed {
-  width: 38px;
-  height: 38px;
-  margin-bottom: 14px;
+.project.empty .shot {
+  border-bottom: 1px dashed var(--line);
+}
+
+.project.empty .shot svg {
+  width: 40px;
+  height: 40px;
   opacity: 0.55;
 }
 
 .project.empty .cat-label {
-  margin-bottom: 10px;
+  color: var(--ink-soft);
 }
 
 .project.empty h4 {
@@ -585,7 +582,6 @@
 }
 
 .project.empty p {
-  margin-top: 4px;
   font-size: 12px;
 }
 

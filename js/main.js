@@ -69,10 +69,16 @@
     article.className = "project reveal empty";
     article.setAttribute("data-cat", category.id);
     article.innerHTML =
+      '<div class="shot">' +
+      '<span class="corner tl"></span><span class="corner tr"></span>' +
+      '<span class="corner bl"></span><span class="corner br"></span>' +
       SEED_ICON +
+      "</div>" +
+      '<div class="body">' +
       '<span class="cat-label">' + escapeHtml(category.label) + " · " + escapeHtml(category.labelEn) + "</span>" +
       "<h4>尚在栽培中</h4>" +
-      "<p>此分類作品準備中，敬請期待。</p>";
+      "<p>此分類作品準備中，敬請期待。</p>" +
+      "</div>";
     return article;
   }
 
