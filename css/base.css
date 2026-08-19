@@ -66,6 +66,24 @@ body::before {
   color: var(--brass);
 }
 
+/* 詳情頁通用的「回到 ⋯」連結，project.html 與 commission.html 共用 */
+.detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color .2s ease, gap .2s ease;
+}
+
+.detail-back:hover {
+  color: var(--rose);
+  gap: 9px;
+}
+
 h1,
 h2,
 h3 {

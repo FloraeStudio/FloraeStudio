@@ -7,23 +7,6 @@
   padding: 56px 32px 24px;
 }
 
-.detail-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--ink-soft);
-  text-decoration: none;
-  transition: color .2s ease, gap .2s ease;
-}
-
-.detail-back:hover {
-  color: var(--rose);
-  gap: 9px;
-}
-
 .detail-hero .plate-no {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
