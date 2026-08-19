@@ -195,29 +195,34 @@
   transform: translateY(-3px) rotate(var(--r, 0deg));
 }
 
-/* washi tape corners */
-.specimen::before,
-.specimen::after {
+/* washi tape corners — 主頁卡（frontispiece）保留雙膠帶，
+   其餘卡片只留一條，避免整個目錄區塊被膠帶塞滿 */
+.specimen::before {
   content: "";
   position: absolute;
+  top: -10px;
+  left: 22px;
   width: 46px;
   height: 20px;
   background: rgba(163, 102, 122, 0.28);
   border: 1px solid rgba(163, 102, 122, 0.15);
-  transition: transform .4s cubic-bezier(.22, .61, .36, 1), box-shadow .4s ease;
-  transform-origin: center bottom;
-}
-
-.specimen::before {
-  top: -10px;
-  left: 22px;
   transform: rotate(-6deg);
+  transform-origin: center bottom;
+  transition: transform .4s cubic-bezier(.22, .61, .36, 1), box-shadow .4s ease;
 }
 
-.specimen::after {
+.specimen.home::after {
+  content: "";
+  position: absolute;
   top: -10px;
   right: 22px;
+  width: 46px;
+  height: 20px;
+  background: rgba(163, 102, 122, 0.28);
+  border: 1px solid rgba(163, 102, 122, 0.15);
   transform: rotate(5deg);
+  transform-origin: center bottom;
+  transition: transform .4s cubic-bezier(.22, .61, .36, 1), box-shadow .4s ease;
 }
 
 .specimen:hover::before {
@@ -225,12 +230,15 @@
   box-shadow: 0 4px 6px -2px var(--shadow);
 }
 
-.specimen:hover::after {
+.specimen.home:hover::after {
   transform: rotate(10deg) translateY(-3px);
   box-shadow: 0 4px 6px -2px var(--shadow);
 }
 
-.specimen.wide::after {
+/* 委託／雜談卡改用 sage 色膠帶，呼應各自 icon 的綠色調，
+   跟作品集卡的玫瑰色拉出節奏差異 */
+#commission-card::before,
+#misc::before {
   background: rgba(127, 146, 113, 0.3);
   border-color: rgba(127, 146, 113, 0.16);
 }
