@@ -291,7 +291,7 @@
 
   // ---------- 導覽列依捲動位置自動反白 ----------
   function initNavActiveOnScroll() {
-    var sections = document.querySelectorAll("#home, #portfolio, #commission, #misc");
+    var sections = document.querySelectorAll("#home, #portfolio");
     var navLinks = document.querySelectorAll("nav a");
     if (!("IntersectionObserver" in window) || !sections.length) return;
 

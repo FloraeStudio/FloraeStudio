@@ -123,7 +123,7 @@
   animation: breathe 4.4s ease-in-out infinite;
 }
 
-/* ---------- catalog grid（標本目錄卡片：主頁/作品集/委託/雜談） ---------- */
+/* ---------- catalog grid（標本目錄卡片：主頁/作品集/委託） ---------- */
 .catalog {
   padding: 72px 32px 40px;
 }
@@ -144,7 +144,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 40px 28px;
 }
 
@@ -180,14 +180,6 @@
 
 .specimen:nth-child(3) {
   --r: -0.4deg;
-}
-
-.specimen:nth-child(4) {
-  --r: 0.6deg;
-}
-
-.specimen:nth-child(5) {
-  --r: -0.3deg;
 }
 
 .specimen:hover {
@@ -235,10 +227,9 @@
   box-shadow: 0 4px 6px -2px var(--shadow);
 }
 
-/* 委託／雜談卡改用 sage 色膠帶，呼應各自 icon 的綠色調，
+/* 委託卡改用 sage 色膠帶，呼應各自 icon 的綠色調，
    跟作品集卡的玫瑰色拉出節奏差異 */
-#commission-card::before,
-#misc::before {
+#commission-card::before {
   background: rgba(127, 146, 113, 0.3);
   border-color: rgba(127, 146, 113, 0.16);
 }
