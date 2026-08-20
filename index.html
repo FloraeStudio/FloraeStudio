@@ -34,7 +34,7 @@
       <nav aria-label="主選單" id="primaryNav">
         <ul>
           <li><a href="#home" class="active"><span class="pin"></span>拾花</a></li>
-          <li><a href="#portfolio"><span class="pin"></span>作品</a></li>
+          <li><a href="works.html"><span class="pin"></span>作品</a></li>
           <li><a href="commission.html"><span class="pin"></span>委託</a></li>
           <li><a href="#misc"><span class="pin"></span>雜談</a></li>
         </ul>
@@ -225,12 +225,13 @@
       <div class="portfolio-head">
         <span class="eyebrow">Pressed Folio</span>
         <h2>作品集</h2>
-        <p class="sub">Recently Cultivated Works · 依類型分類收藏</p>
+        <p class="sub">Recently Cultivated Works · 精選展示</p>
       </div>
 
-      <!-- 以下兩個容器由 js/main.js 依 data/projects.json 動態產生內容 -->
-      <div class="filter-chips" id="filterChips" role="tablist" aria-label="作品分類篩選"></div>
-      <div class="project-grid" id="projectGrid"></div>
+      <!-- 精選幾件代表作，不分類、不篩選；完整分類與所有作品在 works.html -->
+      <div class="project-grid" id="featuredGrid"></div>
+
+      <a class="featured-cta" href="works.html">查看完整作品集 →</a>
     </div>
   </section>
 

@@ -1,0 +1,123 @@
+/* ============================================================
+   works.css — 作品集詳情頁（works.html）專屬樣式
+   需搭配 base.css 一起載入（.portfolio-section / .portfolio-head /
+   .project-grid / .project 等共用卡片樣式定義在 base.css）
+   ============================================================ */
+
+.works-hero {
+  padding: 56px 32px 8px;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 28px 0 44px;
+  min-height: 36px;
+}
+
+.chip {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink-soft);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all .2s ease;
+}
+
+.chip:hover {
+  border-color: var(--rose);
+  color: var(--ink);
+}
+
+.chip.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.project.hidden {
+  display: none !important;
+}
+
+.project.filter-hide {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+.project.filtering {
+  transition: opacity .22s ease, transform .22s ease !important;
+}
+
+/* 「顯示更多」擴充點——件數超過上限時才會出現，見 js/main.js initShowMore() */
+.project.capped {
+  display: none;
+}
+
+.load-more {
+  display: block;
+  margin: 36px auto 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.05em;
+  padding: 10px 22px;
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+
+.load-more:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* empty / awaiting-collection state — 沿用跟一般作品卡相同的
+   .shot + .body 結構，確保切換分類時卡片高度不會突然塌陷 */
+.project.empty {
+  background: transparent;
+  border: 1px dashed var(--line);
+  box-shadow: none;
+}
+
+.project.empty .shot {
+  border-bottom: 1px dashed var(--line);
+}
+
+.project.empty .shot svg {
+  width: 40px;
+  height: 40px;
+  opacity: 0.55;
+}
+
+.project.empty .cat-label {
+  color: var(--ink-soft);
+}
+
+.project.empty h4 {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.project.empty p {
+  font-size: 12px;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 640px) {
+  .works-hero {
+    padding: 44px 20px 4px;
+  }
+
+  .portfolio-section {
+    padding: 20px 20px 60px;
+  }
+}

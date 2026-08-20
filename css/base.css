@@ -333,11 +333,184 @@ footer .fine {
   letter-spacing: 0.03em;
 }
 
+/* ---------- portfolio head + project card（共用：index.html 精選 / works.html 完整列表都會用到） ---------- */
+.portfolio-section {
+  padding: 20px 32px 80px;
+}
+
+.portfolio-head {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.portfolio-head .eyebrow {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.portfolio-head h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.portfolio-head .sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  min-height: 120px;
+}
+
+@media (max-width:900px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 24px -16px var(--shadow);
+  transition: opacity .6s ease, transform .6s cubic-bezier(.22, .61, .36, 1), box-shadow .3s ease;
+}
+
+.project:hover {
+  box-shadow: 0 16px 30px -16px var(--shadow);
+}
+
+.project.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.project.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project .shot {
+  position: relative;
+  aspect-ratio: 4/3;
+  border-bottom: 1px solid var(--line);
+  background:
+    repeating-linear-gradient(45deg, transparent 0 11px, rgba(43, 54, 39, 0.035) 11px 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.project .shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project .shot .corner {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--brass);
+  opacity: 0.55;
+}
+
+.project .shot .corner.tl {
+  top: 9px;
+  left: 9px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.project .shot .corner.tr {
+  top: 9px;
+  right: 9px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.project .shot .corner.bl {
+  bottom: 9px;
+  left: 9px;
+  border-right: none;
+  border-top: none;
+}
+
+.project .shot .corner.br {
+  bottom: 9px;
+  right: 9px;
+  border-left: none;
+  border-top: none;
+}
+
+.project .shot svg {
+  width: 52px;
+  height: 52px;
+  opacity: 0.7;
+}
+
+.project .shot .placeholder-label {
+  position: absolute;
+  bottom: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+
+.project .body {
+  padding: 20px 22px 22px;
+}
+
+.project .cat-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--rose);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.project h4 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 17px;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+.project p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
 /* ---------- reduced motion (共用部分：nav pin) ---------- */
 @media (prefers-reduced-motion: reduce) {
 
   .pin {
     animation: none !important;
+  }
+
+  .project.reveal {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .menu-toggle .bar,

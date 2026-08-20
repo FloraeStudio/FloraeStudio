@@ -1,8 +1,11 @@
 /* ============================================================
    FloraeStudio — main.js
    負責：
-   1. 從 data/projects.json 讀取作品資料，動態產生分類篩選 chips 與作品卡片
-      （沒有作品的分類會自動顯示「尚在栽培中」的標本空位卡）
+   1. 從 data/projects.json 讀取作品資料：
+      - 首頁（index.html #featuredGrid）只挑幾件精選，不分類、不篩選
+      - 作品集詳情頁（works.html #filterChips / #projectGrid）
+        顯示完整分類篩選＋所有作品（沒有作品的分類會自動補「尚在栽培中」的標本空位卡），
+        並預留「顯示更多」的擴充點，件數多起來時不用重寫渲染邏輯
    2. 標本卡 / 作品卡 的捲動進場動畫（IntersectionObserver）
    3. 導覽列依目前捲動所在區塊自動反白
    ============================================================ */
@@ -82,7 +85,11 @@
     return article;
   }
 
-  function renderPortfolio(data) {
+  // 完整作品集頁（works.html）預設顯示上限——超過這個數字才會出現「顯示更多」，
+  // 目前作品數遠低於這個值，先留著擴充點，之後件數多了不用重寫渲染邏輯
+  var PORTFOLIO_PAGE_SIZE = 9;
+
+  function renderFullPortfolio(data) {
     var chipsEl = document.getElementById("filterChips");
     var gridEl = document.getElementById("projectGrid");
     if (!chipsEl || !gridEl) return;
@@ -122,8 +129,69 @@
     });
 
     attachChipFilter(chipsEl, gridEl);
+    initShowMore(gridEl, PORTFOLIO_PAGE_SIZE);
     attachScrollReveal(gridEl.querySelectorAll(".reveal"));
     if (lenisInstance) lenisInstance.resize(); // 新增：卡片插入後重新量測捲動高度
+  }
+
+  // ---------- 首頁精選——只挑前幾件、不分類、不篩選 ----------
+  function renderFeaturedPortfolio(data, count) {
+    var gridEl = document.getElementById("featuredGrid");
+    if (!gridEl) return;
+
+    var categoriesById = {};
+    (data.categories || []).forEach(function (cat) { categoriesById[cat.id] = cat; });
+
+    var featured = (data.projects || []).slice(0, count || 3);
+
+    gridEl.innerHTML = "";
+    if (!featured.length) {
+      gridEl.innerHTML =
+        '<p class="featured-empty">作品尚在栽培中，敬請期待。</p>';
+      return;
+    }
+
+    featured.forEach(function (p) {
+      var cat = categoriesById[p.category] || { id: p.category || "misc", label: "", labelEn: "" };
+      gridEl.appendChild(buildProjectCard(p, cat));
+    });
+
+    attachScrollReveal(gridEl.querySelectorAll(".reveal"));
+    if (lenisInstance) lenisInstance.resize();
+  }
+
+  // ---------- 「顯示更多」擴充點——件數超過上限才會啟用 ----------
+  function initShowMore(gridEl, cap) {
+    var cards = Array.prototype.slice.call(gridEl.querySelectorAll(".project"));
+    if (cards.length <= cap) return; // 目前用不到，之後件數多了會自動生效
+
+    var hiddenCards = cards.slice(cap);
+    hiddenCards.forEach(function (card) { card.classList.add("capped"); });
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "load-more";
+    btn.textContent = "顯示更多 →";
+    gridEl.insertAdjacentElement("afterend", btn);
+
+    function reveal() {
+      hiddenCards.forEach(function (card) {
+        card.classList.remove("capped");
+        void card.offsetWidth; // 強制 reflow，讓淡入轉場能正常播放
+        card.classList.add("in-view");
+      });
+      if (btn.parentNode) btn.parentNode.removeChild(btn);
+      if (lenisInstance) lenisInstance.resize();
+    }
+
+    btn.addEventListener("click", reveal);
+
+    // 一旦使用者開始用分類篩選，就不再限制數量，避免篩選結果被截斷
+    gridEl.parentElement.querySelectorAll(".chip").forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        if (hiddenCards.some(function (c) { return c.classList.contains("capped"); })) reveal();
+      });
+    });
   }
 
   function attachChipFilter(chipsEl, gridEl) {
@@ -165,13 +233,19 @@
   }
 
   function loadPortfolio() {
-    var gridEl = document.getElementById("projectGrid");
+    var fullGridEl = document.getElementById("projectGrid");
+    var featuredGridEl = document.getElementById("featuredGrid");
+    if (!fullGridEl && !featuredGridEl) return;
+
     fetch("data/projects.json")
       .then(function (res) {
         if (!res.ok) throw new Error("projects.json 讀取失敗：" + res.status);
         return res.json();
       })
-      .then(renderPortfolio)
+      .then(function (data) {
+        if (fullGridEl) renderFullPortfolio(data);
+        if (featuredGridEl) renderFeaturedPortfolio(data, 3);
+      })
       .then(function () {
         window.addEventListener("load", function () {
           if (lenisInstance) lenisInstance.resize();
@@ -179,12 +253,12 @@
       })
       .catch(function (err) {
         console.error(err);
-        if (gridEl) {
-          gridEl.innerHTML =
-            '<p style="grid-column:1/-1; text-align:center; color:var(--ink-soft); font-size:13px;">' +
-            "作品資料載入失敗（本機開啟 index.html 需透過本地伺服器，例如 VS Code Live Server，" +
-            "直接雙擊開啟檔案會因瀏覽器安全限制無法讀取 JSON）。</p>";
-        }
+        var failMsg =
+          '<p style="grid-column:1/-1; text-align:center; color:var(--ink-soft); font-size:13px;">' +
+          "作品資料載入失敗（本機開啟需透過本地伺服器，例如 VS Code Live Server，" +
+          "直接雙擊開啟檔案會因瀏覽器安全限制無法讀取 JSON）。</p>";
+        if (fullGridEl) fullGridEl.innerHTML = failMsg;
+        if (featuredGridEl) featuredGridEl.innerHTML = failMsg;
       });
   }
 
