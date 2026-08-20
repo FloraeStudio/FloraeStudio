@@ -339,6 +339,33 @@
   margin-top: 10px;
 }
 
+/* ---------- featured works strip（首頁精選，只有 index.html 用得到） ---------- */
+.featured-cta {
+  display: block;
+  width: fit-content;
+  margin: 40px auto 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.05em;
+  padding: 10px 22px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background .2s ease, color .2s ease;
+}
+
+.featured-cta:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.featured-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
 /* ---------- reduced motion（首頁專屬部分） ---------- */
 @media (prefers-reduced-motion: reduce) {
 
