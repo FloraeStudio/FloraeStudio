@@ -156,6 +156,8 @@
 
 .specimen {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--card);
   border: 1px solid var(--line);
   padding: 34px 28px 26px;
@@ -272,6 +274,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: auto;
   border-top: 1px dashed var(--line);
   padding-top: 12px;
   font-family: 'IBM Plex Mono', monospace;
