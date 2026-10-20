@@ -13,6 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;600;700&family=Noto+Sans+TC:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet">
 
+  <link rel="stylesheet" href="css/lenis.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/commission.css">
 </head>
@@ -21,10 +22,10 @@
 
   <header>
     <div class="nav-inner">
-      <div class="wordmark">
+      <a class="wordmark" href="index.html#home" aria-label="FloraeStudio 首頁">
         <span class="name">FloraeStudio</span>
         <span class="sub">florae studio</span>
-      </div>
+      </a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav"
         aria-label="開啟選單">
         <span class="bar"></span>
@@ -33,9 +34,9 @@
       </button>
       <nav aria-label="主選單" id="primaryNav">
         <ul>
-          <li><a href="index.html#home"><span class="pin"></span>主頁</a></li>
-          <li><a href="index.html#portfolio"><span class="pin"></span>作品</a></li>
-          <li><a href="commission.html" class="active"><span class="pin"></span>委託</a></li>
+          <li><a href="index.html#home">主頁</a></li>
+          <li><a href="index.html#portfolio">作品</a></li>
+          <li><a href="commission.html" class="active">委託</a></li>
         </ul>
       </nav>
     </div>
@@ -43,13 +44,13 @@
 
   <section class="commission-hero">
     <div class="wrap">
-      <a class="detail-back" href="index.html#catalog">← 回到首頁</a>
+      <a class="detail-back" href="index.html#home">← 回到首頁</a>
     </div>
   </section>
 
   <section class="commission-section" id="commission">
     <div class="wrap">
-      <div class="commission-head">
+      <div class="section-head">
         <span class="eyebrow">Tagged Cutting</span>
         <h2>委託</h2>
         <p class="sub">Custom Commission · 網站設計與前端製作</p>
@@ -113,15 +114,11 @@
           <span class="eyebrow">Contact</span>
           <h3>聯絡方式</h3>
           <p>目前雖暫停接案，仍歡迎透過信箱聯絡，討論未來合作的可能。</p>
-          <a class="cta" href="mailto:floraestudio.official@gmail.com">floraestudio.official@gmail.com →</a>
+          <a class="btn" href="mailto:floraestudio.official@gmail.com">floraestudio.official@gmail.com →</a>
         </div>
       </div>
     </div>
   </section>
-
-  <div class="divider">
-    <hr>
-  </div>
 
   <footer>
     <div class="foot-inner">
@@ -135,7 +132,7 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
+  <script src="js/vendor/lenis.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 

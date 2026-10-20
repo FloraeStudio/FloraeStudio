@@ -13,6 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@500;600;700&family=Noto+Sans+TC:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet">
 
+  <link rel="stylesheet" href="css/lenis.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/works.css">
 </head>
@@ -21,10 +22,10 @@
 
   <header>
     <div class="nav-inner">
-      <div class="wordmark">
+      <a class="wordmark" href="index.html#home" aria-label="FloraeStudio 首頁">
         <span class="name">FloraeStudio</span>
         <span class="sub">florae studio</span>
-      </div>
+      </a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav"
         aria-label="開啟選單">
         <span class="bar"></span>
@@ -33,9 +34,9 @@
       </button>
       <nav aria-label="主選單" id="primaryNav">
         <ul>
-          <li><a href="index.html#home"><span class="pin"></span>主頁</a></li>
-          <li><a href="works.html" class="active"><span class="pin"></span>作品</a></li>
-          <li><a href="commission.html"><span class="pin"></span>委託</a></li>
+          <li><a href="index.html#home">主頁</a></li>
+          <li><a href="works.html" class="active">作品</a></li>
+          <li><a href="commission.html">委託</a></li>
         </ul>
       </nav>
     </div>
@@ -43,13 +44,13 @@
 
   <section class="works-hero">
     <div class="wrap">
-      <a class="detail-back" href="index.html#catalog">← 回到首頁</a>
+      <a class="detail-back" href="index.html#home">← 回到首頁</a>
     </div>
   </section>
 
   <section class="portfolio-section" id="portfolio">
     <div class="wrap">
-      <div class="portfolio-head">
+      <div class="section-head">
         <span class="eyebrow">Pressed Folio</span>
         <h2>作品集</h2>
         <p class="sub">Recently Cultivated Works · 依類型分類收藏</p>
@@ -60,10 +61,6 @@
       <div class="project-grid" id="projectGrid"></div>
     </div>
   </section>
-
-  <div class="divider">
-    <hr>
-  </div>
 
   <footer>
     <div class="foot-inner">
@@ -77,7 +74,7 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
+  <script src="js/vendor/lenis.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 

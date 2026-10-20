@@ -1,78 +1,150 @@
 /* ============================================================
-   base.css — 全站共用樣式（變數、reset、標題、header/nav、footer）
-   index.html 與 project.html 都會載入這份
+   base.css — 全站共用樣式
+   變數、reset、版面容器、header/nav、footer、作品卡片
    ============================================================ */
 
 :root {
-  --paper: #efece0;
-  --paper-deep: #e7e3d3;
-  --card: #f8f6ec;
+  --paper: #f1eee3;
+  --paper-deep: #e8e4d4;
+  --card: #faf8f0;
   --ink: #2b3627;
-  --ink-soft: #5b6553;
+  --ink-soft: #565f4e;
   --rose: #a3667a;
+  --rose-ink: #8c4f64;      /* 小字用，對比度比 --rose 高 */
   --sage: #7f9271;
   --brass: #ab8a52;
-  --line: #cec7a9;
+  --brass-ink: #7d612f;     /* 小字用，對比度比 --brass 高 */
+  --line: #d4cdb0;
   --shadow: rgba(43, 54, 39, 0.16);
+
+  --font-serif: 'Noto Serif TC', serif;
+  --font-sans: 'Noto Sans TC', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-latin: 'Cormorant Garamond', serif;
+
+  --container: 1120px;
+  --gutter: 32px;
+  --header-h: 68px;
+  --ease: cubic-bezier(.22, .61, .36, 1);
 }
 
 * {
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-section,
-.hero {
-  scroll-margin-top: 84px;
-}
+/* 注意：不要在 html 上設 scroll-behavior: smooth。
+   Lenis 會自己處理平滑捲動，兩者疊加會互相打架，造成卡頓／抖動。
+   錨點捲動交給 Lenis（見 js/main.js 的 anchors 設定）。 */
 
 body {
   margin: 0;
-  background:
-    radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.35), transparent 55%),
-    var(--paper);
+  background-color: var(--paper);
+  /* 紙張顆粒：跟著內容捲動的小圖磚，不使用 position:fixed 的全螢幕圖層，
+     避免每一幀捲動都要重繪整個視窗大小的圖層 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.16  0 0 0 0 0.20  0 0 0 0 0.14  0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   color: var(--ink);
-  font-family: 'Noto Sans TC', 'IBM Plex Mono', sans-serif;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.8;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* paper grain */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.5;
-  z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.16  0 0 0 0 0.20  0 0 0 0 0.14  0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+img {
+  max-width: 100%;
+  display: block;
 }
 
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 3px;
+}
+
+/* ---------- layout ---------- */
 .wrap {
-  position: relative;
-  z-index: 1;
-  max-width: 1180px;
+  max-width: var(--container);
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 var(--gutter);
 }
 
 .eyebrow {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.16em;
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--brass);
+  color: var(--brass-ink);
 }
 
-/* 詳情頁通用的「回到 ⋯」連結，project.html 與 commission.html 共用 */
+.section-head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-head .eyebrow {
+  margin-bottom: 12px;
+}
+
+.section-head h2 {
+  font-size: clamp(26px, 3.2vw, 32px);
+  letter-spacing: 0.04em;
+}
+
+.section-head .sub {
+  margin-top: 12px;
+  font-family: var(--font-latin);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink-soft);
+}
+
+/* 共用按鈕 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 12px 24px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease, gap .25s ease;
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+  gap: 12px;
+}
+
 .detail-back {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
   letter-spacing: 0.04em;
   color: var(--ink-soft);
   text-decoration: none;
@@ -80,65 +152,18 @@ body::before {
 }
 
 .detail-back:hover {
-  color: var(--rose);
-  gap: 9px;
-}
-
-h1,
-h2,
-h3 {
-  font-family: 'Noto Serif TC', serif;
-  margin: 0;
-  color: var(--ink);
-}
-
-.latin {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: var(--ink-soft);
-}
-
-a {
-  color: inherit;
-}
-
-/* ---------- shared keyframes ---------- */
-/* 呼吸動畫：nav 的 pin、標本編號前的黃銅點、emblem 的花蕊都共用這組 */
-@keyframes breathe {
-
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.85;
-    transform: scale(1.25);
-  }
-}
-
-@keyframes breathe-active {
-
-  0%,
-  100% {
-    opacity: 0.75;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.35);
-  }
+  color: var(--rose-ink);
+  gap: 10px;
 }
 
 /* ---------- header / nav ---------- */
+/* 不使用 backdrop-filter：捲動時它必須每一幀重新模糊下方內容，是常見的卡頓來源。
+   改用接近不透明的底色，視覺差異很小、效能好很多。 */
 header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(239, 236, 224, 0.86);
-  backdrop-filter: blur(6px);
+  background: rgba(241, 238, 227, 0.97);
   border-bottom: 1px solid var(--line);
 }
 
@@ -146,95 +171,79 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 32px;
-  max-width: 1180px;
+  height: var(--header-h);
+  max-width: var(--container);
   margin: 0 auto;
+  padding: 0 var(--gutter);
 }
 
 .wordmark {
   display: flex;
   align-items: baseline;
   gap: 10px;
+  text-decoration: none;
 }
 
 .wordmark .name {
-  font-family: 'Noto Serif TC', serif;
+  font-family: var(--font-serif);
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 0.02em;
 }
 
 .wordmark .sub {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-latin);
   font-style: italic;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--ink-soft);
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 6px;
+  gap: 4px;
   margin: 0;
   padding: 0;
 }
 
 nav a {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
   text-decoration: none;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12.5px;
-  letter-spacing: 0.03em;
-  padding: 7px 13px;
-  border: 1px solid transparent;
-  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 8px 14px;
   color: var(--ink-soft);
-  transition: border-color .2s ease, color .2s ease, background .2s ease;
+  transition: color .2s ease;
 }
 
-nav a .pin {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--brass);
-  opacity: 0.55;
-  transition: opacity .2s ease;
-  animation: breathe 3.6s ease-in-out infinite;
-}
-
-nav li:nth-child(2) .pin {
-  animation-delay: .6s;
-}
-
-nav li:nth-child(3) .pin {
-  animation-delay: 1.2s;
-}
-
-nav li:nth-child(4) .pin {
-  animation-delay: 1.8s;
+/* 底線指示，取代原本一直呼吸的小圓點（持續動畫會讓頁面一直在重繪） */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 3px;
+  height: 1px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s var(--ease);
 }
 
 nav a:hover {
-  border-color: var(--line);
   color: var(--ink);
-  background: var(--card);
 }
 
-nav a:hover .pin {
-  opacity: 1;
+nav a:hover::after,
+nav a.active::after {
+  transform: scaleX(1);
 }
 
 nav a.active {
-  border-color: var(--rose);
-  color: var(--rose);
-}
-
-nav a.active .pin {
-  background: var(--rose);
-  opacity: 1;
-  animation: breathe-active 2.6s ease-in-out infinite;
+  color: var(--rose-ink);
 }
 
 .menu-toggle {
@@ -242,9 +251,9 @@ nav a.active .pin {
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 34px;
-  height: 34px;
-  padding: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0 9px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -270,11 +279,11 @@ header.nav-open .menu-toggle .bar:nth-child(3) {
   transform: translateY(-6.5px) rotate(-45deg);
 }
 
-/* ---------- section divider ---------- */
+/* ---------- divider ---------- */
 .divider {
-  max-width: 1180px;
+  max-width: var(--container);
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 var(--gutter);
 }
 
 .divider hr {
@@ -285,79 +294,60 @@ header.nav-open .menu-toggle .bar:nth-child(3) {
 
 /* ---------- footer ---------- */
 footer {
-  margin-top: 80px;
-  padding: 42px 32px 48px;
+  margin-top: 96px;
+  padding: 48px 0 40px;
   border-top: 1px solid var(--line);
   background: var(--paper-deep);
 }
 
 .foot-inner {
-  max-width: 1180px;
+  max-width: var(--container);
   margin: 0 auto;
+  padding: 0 var(--gutter);   /* 與 header、.wrap 使用同一組寬度，三者左右對齊 */
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px 24px;
   justify-content: space-between;
   align-items: center;
 }
 
 footer .brand {
-  font-family: 'Noto Serif TC', serif;
+  font-family: var(--font-serif);
   font-weight: 600;
+  font-size: 18px;
 }
 
 footer .links {
   display: flex;
-  gap: 18px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
+  gap: 24px;
+  font-family: var(--font-mono);
+  font-size: 13px;
 }
 
 footer .links a {
   text-decoration: none;
   color: var(--ink-soft);
+  transition: color .2s ease;
 }
 
 footer .links a:hover {
-  color: var(--rose);
+  color: var(--rose-ink);
 }
 
 footer .fine {
   width: 100%;
-  margin-top: 24px;
-  padding-top: 18px;
+  margin-top: 16px;
+  padding-top: 20px;
   border-top: 1px dashed var(--line);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
+  font-family: var(--font-mono);
+  font-size: 12px;
   color: var(--ink-soft);
   letter-spacing: 0.03em;
 }
 
-/* ---------- portfolio head + project card（共用：index.html 精選 / works.html 完整列表都會用到） ---------- */
+/* ---------- 作品卡片（首頁精選／works.html 共用） ---------- */
 .portfolio-section {
-  padding: 20px 32px 80px;
-}
-
-.portfolio-head {
-  text-align: center;
-  margin-bottom: 36px;
-}
-
-.portfolio-head .eyebrow {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.portfolio-head h2 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-.portfolio-head .sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 15px;
-  color: var(--ink-soft);
+  padding: 24px 0 0;
 }
 
 .project-grid {
@@ -367,169 +357,145 @@ footer .fine {
   min-height: 120px;
 }
 
-@media (max-width:900px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .project {
   display: flex;
   flex-direction: column;
-  text-decoration: none;
   color: inherit;
   background: var(--card);
   border: 1px solid var(--line);
-  box-shadow: 0 10px 24px -16px var(--shadow);
-  transition: opacity .6s ease, transform .6s cubic-bezier(.22, .61, .36, 1), box-shadow .3s ease;
+  transition: box-shadow .4s var(--ease), transform .4s var(--ease), border-color .3s ease;
 }
 
-.project:hover {
-  box-shadow: 0 16px 30px -16px var(--shadow);
+.project[data-href] {
+  cursor: pointer;
 }
 
-.project.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.project.reveal.in-view {
-  opacity: 1;
-  transform: translateY(0);
+.project[data-href]:hover {
+  transform: translateY(-4px);
+  border-color: #bdb48f;
+  box-shadow: 0 18px 32px -18px var(--shadow);
 }
 
 .project .shot {
   position: relative;
-  aspect-ratio: 4/3;
-  padding: 14px;
-  border-bottom: 1px dashed var(--line);
-  background:
-    repeating-linear-gradient(45deg, transparent 0 11px, rgba(43, 54, 39, 0.035) 11px 12px);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--paper-deep);
+  border-bottom: 1px solid var(--line);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
 .project .shot img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  border: 1px solid var(--line);
-  background: var(--paper);
+  transition: transform .8s var(--ease);
 }
 
-.project .shot .corner {
-  position: absolute;
-  width: 11px;
-  height: 11px;
-  border: 1px solid var(--brass);
-  opacity: 0.55;
-}
-
-.project .shot .corner.tl {
-  top: 9px;
-  left: 9px;
-  border-right: none;
-  border-bottom: none;
-}
-
-.project .shot .corner.tr {
-  top: 9px;
-  right: 9px;
-  border-left: none;
-  border-bottom: none;
-}
-
-.project .shot .corner.bl {
-  bottom: 9px;
-  left: 9px;
-  border-right: none;
-  border-top: none;
-}
-
-.project .shot .corner.br {
-  bottom: 9px;
-  right: 9px;
-  border-left: none;
-  border-top: none;
+.project[data-href]:hover .shot img {
+  transform: scale(1.035);
 }
 
 .project .shot svg {
-  width: 52px;
-  height: 52px;
-  opacity: 0.7;
+  width: 48px;
+  height: 48px;
+  opacity: 0.6;
 }
 
 .project .shot .placeholder-label {
   position: absolute;
-  bottom: 9px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--ink-soft);
-  opacity: 0.6;
+  opacity: 0.7;
   text-transform: uppercase;
 }
 
 .project .body {
-  padding: 20px 22px 22px;
+  padding: 22px 24px 26px;
 }
 
 .project .cat-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--rose);
-  text-transform: uppercase;
   display: block;
   margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--rose-ink);
+  text-transform: uppercase;
 }
 
 .project h4 {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 17px;
+  font-size: 19px;
   margin: 0 0 8px;
-  color: var(--ink);
 }
 
 .project p {
-  font-size: 13px;
+  font-size: 14.5px;
   line-height: 1.8;
   color: var(--ink-soft);
-  margin: 0;
 }
 
-/* ---------- reduced motion (共用部分：nav pin) ---------- */
-@media (prefers-reduced-motion: reduce) {
+.project .more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  transition: gap .25s ease, color .25s ease;
+}
 
-  .pin {
-    animation: none !important;
-  }
+.project[data-href]:hover .more {
+  gap: 10px;
+  color: var(--rose-ink);
+}
 
-  .project.reveal {
-    transition: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
+/* 進場動畫：只動 opacity + transform（可由 GPU 合成，不觸發重排）。
+   延遲只在進場當下設定，播完就清掉，不會拖慢之後的 hover。 */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease), box-shadow .4s var(--ease), border-color .3s ease;
+}
 
-  .menu-toggle .bar,
-  nav {
-    transition: none !important;
-  }
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
 
-  html {
-    scroll-behavior: auto;
+.reveal.in-view[data-href]:hover {
+  transform: translateY(-4px);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 }
 
-/* ---------- responsive nav（共用） ---------- */
 @media (max-width: 640px) {
-  .nav-inner {
-    padding: 14px 20px;
+  :root {
+    --gutter: 20px;
+    --header-h: 60px;
+  }
+
+  body {
+    font-size: 15px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
   }
 
   .menu-toggle {
@@ -545,25 +511,57 @@ footer .fine {
     overflow: hidden;
     background: var(--paper);
     border-bottom: 1px solid var(--line);
-    box-shadow: 0 14px 24px -18px var(--shadow);
-    transition: max-height .3s ease;
+    visibility: hidden;
+    transition: max-height .3s ease, visibility 0s linear .3s;
   }
 
   header.nav-open nav {
     max-height: 260px;
+    visibility: visible;
+    transition: max-height .3s ease, visibility 0s;
   }
 
   nav ul {
     flex-direction: column;
-    gap: 2px;
-    max-width: none;
-    overflow-x: visible;
-    padding: 6px 20px 16px;
+    gap: 0;
+    padding: 6px var(--gutter) 16px;
   }
 
   nav a {
-    padding: 12px 6px;
-    font-size: 13px;
-    white-space: normal;
+    padding: 14px 0;
+    font-size: 14px;
+  }
+
+  nav a::after {
+    left: 0;
+    right: auto;
+    width: 24px;
+    bottom: 8px;
+  }
+
+  footer {
+    margin-top: 72px;
+  }
+
+  .foot-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

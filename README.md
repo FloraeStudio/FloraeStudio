@@ -2,15 +2,18 @@
 
 ```
 FloraeStudio/
-├── index.html          # 頁面結構（不含樣式與邏輯）
+├── index.html / works.html / commission.html   # 頁面結構
 ├── css/
-│   └── style.css       # 全站樣式
+│   ├── base.css        # 全站共用（變數、header、footer、作品卡）
+│   ├── home.css / works.css / commission.css    # 各頁專屬
+│   └── lenis.css       # Lenis 官方必要樣式
 ├── js/
-│   └── main.js         # 捲動動畫、導覽列反白、作品集動態渲染
+│   ├── main.js         # 平滑捲動、進場動畫、導覽列、作品集渲染
+│   └── vendor/lenis.min.js   # Lenis 1.3.27（本機載入，不再依賴 unpkg）
 ├── data/
 │   └── projects.json   # 作品集內容資料（分類 + 作品清單）
 └── images/
-    └── projects/       # 放作品實際截圖，檔名對應 projects.json 的 image 欄位
+    └── projects/       # 放作品實際截圖，檔名對應 projects.json 的 image 欄位；建議先轉成 WebP、寬度約 1400px（單張 150KB 內），載入與捲動都會更順
 ```
 
 ## 新增一件作品

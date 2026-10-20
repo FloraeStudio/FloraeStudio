@@ -1,48 +1,25 @@
 /* ============================================================
-   commission.css — 委託詳情頁（commission.html）專屬樣式
+   commission.css — 委託頁（commission.html）專屬樣式
    需搭配 base.css 一起載入
    ============================================================ */
 
 .commission-hero {
-  padding: 56px 32px 8px;
+  padding: 40px 0 8px;
 }
 
-/* ---------- commission section（委託） ---------- */
 .commission-section {
-  padding: 20px 32px 80px;
+  padding: 24px 0 0;
 }
 
-.commission-head {
-  text-align: center;
-  margin-bottom: 44px;
-}
-
-.commission-head .eyebrow {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.commission-head h2 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-.commission-head .sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 15px;
-  color: var(--ink-soft);
-}
-
-/* status plate — 接案狀態公告 */
+/* 接案狀態公告 */
 .status-plate {
   display: flex;
   align-items: flex-start;
   gap: 24px;
   background: var(--card);
   border: 1px dashed var(--line);
-  padding: 26px 28px;
-  margin-bottom: 40px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
 }
 
 .status-plate .status-icon {
@@ -65,54 +42,65 @@
 
 .status-plate .status-label {
   display: block;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
+  font-family: var(--font-mono);
+  font-size: 12px;
   letter-spacing: 0.08em;
-  color: var(--brass);
+  color: var(--ink-soft);
   text-transform: uppercase;
   margin-bottom: 6px;
 }
 
 .status-plate h3 {
-  font-size: 19px;
+  font-size: 21px;
   margin-bottom: 8px;
 }
 
 .status-plate p {
-  font-size: 13.5px;
-  line-height: 1.85;
-  color: var(--ink-soft);
-  margin: 0;
-}
-
-.status-plate.is-paused .status-label {
+  font-size: 15px;
   color: var(--ink-soft);
 }
 
-/* service scope + process */
-.commission-grid {
+/* 內容區塊 */
+.commission-grid,
+.commission-foot {
   display: grid;
+  gap: 24px;
+}
+
+.commission-grid {
   grid-template-columns: 1fr 1.3fr;
-  gap: 28px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
-@media (max-width: 900px) {
-  .commission-grid {
-    grid-template-columns: 1fr;
-  }
+.commission-foot {
+  grid-template-columns: 1fr 1fr;
 }
 
-.commission-block {
+.commission-block,
+.pricing-note,
+.commission-contact {
   background: var(--card);
   border: 1px solid var(--line);
-  padding: 28px 26px;
-  box-shadow: 0 10px 24px -16px var(--shadow);
+  padding: 32px 32px 34px;
 }
 
-.commission-block h3 {
-  font-size: 19px;
+.commission-block h3,
+.pricing-note h3,
+.commission-contact h3 {
+  font-size: 20px;
   margin: 8px 0 18px;
+}
+
+.pricing-note p,
+.commission-contact p {
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.commission-contact .btn {
+  margin-top: 22px;
+  font-size: 12.5px;
+  word-break: break-all;
 }
 
 .scope-list {
@@ -121,34 +109,32 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .scope-list li {
-  font-size: 13.5px;
-  line-height: 1.8;
+  font-size: 15px;
   color: var(--ink-soft);
   display: flex;
-  gap: 12px;
+  gap: 14px;
 }
 
 .scope-list .no {
   flex: none;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--brass);
-  padding-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--brass-ink);
+  padding-top: 4px;
 }
 
 .process-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  counter-reset: process;
 }
 
 .process-list li {
-  padding: 14px 0;
+  padding: 16px 0;
   border-top: 1px dashed var(--line);
 }
 
@@ -157,91 +143,47 @@
   border-top: none;
 }
 
+.process-list li:last-child {
+  padding-bottom: 0;
+}
+
 .process-list .step {
   display: block;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
+  font-family: var(--font-mono);
+  font-size: 12px;
   letter-spacing: 0.05em;
-  color: var(--rose);
+  color: var(--rose-ink);
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .process-list p {
-  font-size: 13.5px;
-  line-height: 1.8;
+  font-size: 15px;
   color: var(--ink-soft);
-  margin: 0;
-}
-
-/* pricing + contact */
-.commission-foot {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
 }
 
 @media (max-width: 900px) {
+
+  .commission-grid,
   .commission-foot {
     grid-template-columns: 1fr;
   }
 }
 
-.pricing-note,
-.commission-contact {
-  background: var(--card);
-  border: 1px solid var(--line);
-  padding: 28px 26px;
-  box-shadow: 0 10px 24px -16px var(--shadow);
-}
-
-.pricing-note h3,
-.commission-contact h3 {
-  font-size: 17px;
-  margin: 8px 0 14px;
-}
-
-.pricing-note p,
-.commission-contact p {
-  font-size: 13.5px;
-  line-height: 1.85;
-  color: var(--ink-soft);
-  margin: 0 0 16px;
-}
-
-.commission-contact .cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12.5px;
-  letter-spacing: 0.03em;
-  padding: 10px 18px;
-  border: 1px solid var(--ink);
-  color: var(--ink);
-  text-decoration: none;
-  transition: background .2s ease, color .2s ease;
-}
-
-.commission-contact .cta:hover {
-  background: var(--ink);
-  color: var(--paper);
-}
-
-/* ---------- responsive ---------- */
 @media (max-width: 640px) {
   .commission-hero {
-    padding: 44px 20px 4px;
-  }
-
-  .commission-section {
-    padding: 20px 20px 60px;
+    padding: 28px 0 4px;
   }
 
   .status-plate {
     flex-direction: column;
-    align-items: flex-start;
     gap: 14px;
-    padding: 22px 20px;
+    padding: 24px 22px;
+  }
+
+  .commission-block,
+  .pricing-note,
+  .commission-contact {
+    padding: 26px 22px 28px;
   }
 }
